@@ -49,6 +49,9 @@ if ( ! class_exists( 'Relawanku\Taxonomies\Skill' ) ) {
 				'public'             => true,
 				'publicly_queryable' => false,
 				'description'        => esc_html__( 'Skills and preferred tasks for the volunteer', 'relawanku' ),
+				'show_ui'            => true,
+				'show_in_quick_edit' => false,
+				'meta_box_cb'        => false,
 			);
 		}
 	}
