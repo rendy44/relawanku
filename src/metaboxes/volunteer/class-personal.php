@@ -107,6 +107,16 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Personal' ) ) {
 						),
 						'std'     => 'indonesian',
 					)
+				)
+				->add_field(
+					array(
+						'type'       => 'taxonomy',
+						'name'       => esc_html__( 'Skills', 'relawanku' ),
+						'id'         => 'skill',
+						'taxonomy'   => 'skill',
+						'field_type' => 'select_advanced',
+						'multiple'   => true,
+					)
 				);
 		}
 	}
