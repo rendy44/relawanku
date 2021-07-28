@@ -50,7 +50,7 @@ if ( ! class_exists( 'Relawanku\Types\Volunteer' ) ) {
 					'edit_item'    => _x( 'Edit Volunteer', 'volunteer_admin', 'relawanku' ),
 				),
 				'menu_icon'          => 'dashicons-nametag',
-				'publicly_queryable' => false,
+				'publicly_queryable' => true,
 				'supports'           => array( 'title' ),
 				'taxonomies'         => array( 'cluster', 'skill' ),
 			);

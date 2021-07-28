@@ -32,6 +32,6 @@ Relawanku::init();
 add_action(
 	'plugins_loaded',
 	function () {
-		load_plugin_textdomain( 'relawanku', false, dirname( RELAWANKU__BASE ).'/languages' );
+		load_plugin_textdomain( 'relawanku', false, dirname( RELAWANKU__BASE ) . '/languages' );
 	}
 );

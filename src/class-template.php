@@ -53,12 +53,12 @@ if ( ! class_exists( 'Relawanku\Template' ) ) {
 		 * Render the template.
 		 *
 		 * @param string $template_name name of the template file.
-		 * @param array $vars variable collections that will be injected into blade.
-		 * @param false $echo whether echo the output.
+		 * @param array  $vars variable collections that will be injected into blade.
+		 * @param false  $echo whether echo the output.
 		 *
 		 * @return string
 		 */
-		public function render( $template_name, $vars = array(), $echo = false ) {
+		public function render( string $template_name, $vars = array(), $echo = false ) {
 			try {
 				$output = $this->blade->run( $template_name, $vars );
 			} catch ( \Exception $e ) {

@@ -34,7 +34,13 @@ if ( ! class_exists( 'Relawanku\Ajax\QRCode' ) ) {
 			$volunteer_id = $this->get( 'volunteer' );
 			// Generate qrcode.
 			$qrcode = new \Relawanku\QRCode();
-			$qrcode->add_data( $volunteer_id );
+			$qrcode->configure(
+				array(
+					'width'  => 600,
+					'height' => 600,
+				)
+			);
+			$qrcode->add_data( get_permalink( $volunteer_id ) );
 			$qrcode->stream_qrcode();
 
 			// Validate qrcode.
@@ -42,7 +48,7 @@ if ( ! class_exists( 'Relawanku\Ajax\QRCode' ) ) {
 				$qrcode_url = $qrcode->get_data();
 
 				// Save qrcode to custom meta.
-				Helper::init()->add_post_meta( $volunteer_id, 'qrcode', $qrcode_url );
+				Helper::init()->add_post_meta( $volunteer_id, 'qrcode_url', $qrcode_url );
 
 				// Update result.
 				$this->set_status( true );

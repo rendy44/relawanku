@@ -29,27 +29,27 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		/**
 		 * Get post meta.
 		 *
-		 * @param int $post_id id of the post.
+		 * @param int    $post_id id of the post.
 		 * @param string $key key of the post meta.
-		 * @param bool $single whether value is single.
+		 * @param bool   $single whether value is single.
 		 *
 		 * @return mixed
 		 */
-		public function get_post_meta( $post_id, $key, $single = true ) {
+		public function get_post_meta( int $post_id, string $key, $single = true ) {
 			return get_post_meta( $post_id, RELAWANKU__PREFIX . $key, $single );
 		}
 
 		/**
 		 * Save post meta.
 		 *
-		 * @param int $post_id id of the post.
+		 * @param int    $post_id id of the post.
 		 * @param string $key key of the post meta.
-		 * @param mixed $value value of the post meta.
-		 * @param bool $unique whether the meta is unique.
+		 * @param mixed  $value value of the post meta.
+		 * @param bool   $unique whether the meta is unique.
 		 *
 		 * @return false|int
 		 */
-		public function add_post_meta( $post_id, $key, $value, $unique = true ) {
+		public function add_post_meta( int $post_id, string $key, $value, $unique = true ) {
 			return add_post_meta( $post_id, RELAWANKU__PREFIX . $key, $value, $unique );
 		}
 
@@ -61,7 +61,7 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		 *
 		 * @return string
 		 */
-		public function timestamp_to_date( $timestamp, $format = '' ) {
+		public function timestamp_to_date( string $timestamp, $format = '' ) {
 
 			// Make sure timestamp is provided.
 			if ( ! $timestamp ) {

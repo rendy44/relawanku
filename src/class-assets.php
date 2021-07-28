@@ -36,9 +36,7 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 		 * Assets constructor.
 		 */
 		protected function __construct() {
-//			$this->map_assets();
 			$this->metabox_assets();
-//			$this->front_end_assets();
 		}
 
 		/**
@@ -52,13 +50,16 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 		 * Enqueue front-end's assets.
 		 */
 		private function front_end_assets() {
-			add_action( 'wp_enqueue_scripts', function () {
+			add_action(
+				'wp_enqueue_scripts',
+				function () {
 
-				// Front-end's css.
-				foreach ( $this->front_css as $css ) {
-					wp_enqueue_style( $css, RELAWANKU__PLUGIN_URL . "assets/css/{$css}.css", array(), RELAWANKU__VERSION );
+					// Front-end's css.
+					foreach ( $this->front_css as $css ) {
+						wp_enqueue_style( $css, RELAWANKU__PLUGIN_URL . "assets/css/{$css}.css", array(), RELAWANKU__VERSION );
+					}
 				}
-			} );
+			);
 		}
 
 		/**
