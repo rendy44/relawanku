@@ -43,6 +43,9 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 			// Load assets.
 			$this->load_assets();
 
+			// Load libraries.
+			$this->load_libraries();
+
 			// Register custom post types.
 			$this->reg_post_types();
 
@@ -64,6 +67,17 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 		 */
 		private function load_assets() {
 			Assets::init();
+		}
+
+		/**
+		 * Method to load 3rd party libraries.
+		 */
+		private function load_libraries() {
+
+			// Load metabox.
+			require_once RELAWANKU__PLUGIN_PATH . '/src/libs/meta-box/inc/loader.php';
+			$metabox = new \RWMB_Loader();
+			$metabox->init();
 		}
 
 		/**
