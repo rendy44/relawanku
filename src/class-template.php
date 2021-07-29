@@ -39,11 +39,11 @@ if ( ! class_exists( 'Relawanku\Template' ) ) {
 		protected function __construct() {
 
 			// Manually load the BladeOne lib.
-			require_once RELAWANKU__PLUGIN_PATH . 'src/libs/BladeOne/BladeOne.php';
+			require_once RELAWANKU__PATH . '/src/libs/BladeOne/BladeOne.php';
 
 			// Define cache and templates location.
-			$views = RELAWANKU__PLUGIN_PATH . 'templates';
-			$cache = RELAWANKU__PLUGIN_PATH . 'templates/caches';
+			$views = RELAWANKU__PATH . '/templates';
+			$cache = RELAWANKU__PATH . '/templates/caches';
 
 			// Instance the blade.
 			$this->blade = new BladeOne( $views, $cache, BladeOne::MODE_DEBUG ); // MODE_DEBUG allows to pinpoint troubles.

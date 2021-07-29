@@ -56,7 +56,7 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 
 					// Front-end's css.
 					foreach ( $this->front_css as $css ) {
-						wp_enqueue_style( $css, RELAWANKU__PLUGIN_URL . "assets/css/{$css}.css", array(), RELAWANKU__VERSION );
+						wp_enqueue_style( $css, RELAWANKU__URL . "/assets/css/{$css}.css", array(), RELAWANKU__VERSION );
 					}
 				}
 			);
@@ -69,10 +69,10 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 			add_action(
 				'rwmb_enqueue_scripts',
 				function () {
-					wp_enqueue_script( 'metabox', RELAWANKU__PLUGIN_URL . 'assets/js/metabox.js', array( 'jquery' ), RELAWANKU__VERSION, true );
+					wp_enqueue_script( 'metabox', RELAWANKU__URL . '/assets/js/metabox.js', array( 'jquery' ), RELAWANKU__VERSION, true );
 					wp_localize_script( 'metabox', 'rlw', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
-					wp_enqueue_style( 'metabox', RELAWANKU__PLUGIN_URL . 'assets/css/admin/metabox.css', array(), RELAWANKU__VERSION );
+					wp_enqueue_style( 'metabox', RELAWANKU__URL . '/assets/css/admin/metabox.css', array(), RELAWANKU__VERSION );
 				}
 			);
 		}

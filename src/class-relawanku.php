@@ -75,7 +75,7 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 		private function load_libraries() {
 
 			// Load metabox.
-			require_once RELAWANKU__PLUGIN_PATH . '/src/libs/meta-box/inc/loader.php';
+			require_once RELAWANKU__PATH . '/src/libs/meta-box/inc/loader.php';
 			$metabox = new \RWMB_Loader();
 			$metabox->init();
 		}
@@ -123,12 +123,6 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 		 * Method to load plugin's text domain.
 		 */
 		private function load_text_domain() {
-			add_action(
-				'plugins_loaded',
-				function () {
-					load_plugin_textdomain( 'relawanku', false, RELAWANKU__PLUGIN_PATH . 'lang' );
-				}
-			);
 		}
 	}
 }

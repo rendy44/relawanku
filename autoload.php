@@ -31,7 +31,7 @@ spl_autoload_register(
 			$final_path = implode( '/', $paths );
 
 			// Require the file.
-			require_once RELAWANKU__PLUGIN_PATH . 'src/' . strtolower( $final_path ) . '.php';
+			require_once RELAWANKU__PATH . '/src/' . strtolower( $final_path ) . '.php';
 		}
 	}
 );
