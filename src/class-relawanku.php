@@ -40,6 +40,9 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 		 */
 		protected function __construct() {
 
+			// Register theme supports.
+			$this->reg_supports();
+
 			// Load assets.
 			$this->load_assets();
 
@@ -60,6 +63,19 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 
 			// Load text domain.
 			$this->load_text_domain();
+		}
+
+		/**
+		 * Method to register custom supports.
+		 */
+		private function reg_supports() {
+			add_action(
+				'after_setup_theme',
+				function () {
+					add_theme_support( 'title-tag' );
+					add_theme_support( 'menus' );
+				}
+			);
 		}
 
 		/**
