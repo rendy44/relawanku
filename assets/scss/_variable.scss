@@ -1,0 +1,14 @@
+$white: #fff !default;
+$black: #000 !default;
+$main: #773377 !default;
+$success: #337733 !default;
+$warning: #ff7733 !default;
+$danger: #773333 !default;
+
+$blackText: lighten($black, 20%);
+$lightestBlack: rgba($black, .1);
+$light: darken($white, 5%);
+
+$colors: ('main':$main, 'success':$success, 'warning':$warning, 'danger':$danger);
+
+$frow-enable-buttons: false;

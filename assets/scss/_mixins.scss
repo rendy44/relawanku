@@ -1,0 +1,115 @@
+@mixin breakpoint($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin defaultTransition() {
+  @include transition(all .2s ease);
+}
+
+@mixin borderRadius($size) {
+  -webkit-border-radius: $size;
+  -moz-border-radius: $size;
+  border-radius: $size;
+}
+
+@mixin boxShadow($top : 0, $left : .2rem, $blur : .3rem, $color: rgba($black, .075), $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $color !important;
+    -moz-box-shadow: inset $top $left $blur $color !important;
+    box-shadow: inset $top $left $blur $color !important;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color !important;
+    -moz-box-shadow: $top $left $blur $color !important;
+    box-shadow: $top $left $blur $color !important;
+  }
+}
+
+@mixin textShadow($color: rgba($black, .4)) {
+  text-shadow: 2px 2px 1px $color;
+}
+
+@mixin zoom($size:1.2) {
+  transform: scale($size);
+  -moz-transform: scale($size);
+  -o-transform: scale($size);
+  -webkit-transform: scale($size);
+}
+
+@mixin rotate($val) {
+  transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  -webkit-transform: rotate($val);
+}
+
+@mixin skew($val) {
+  transform: skew($val);
+  -moz-transform: skew($val);
+  -ms-transform: skew($val);
+  -o-transform: skew($val);
+  -webkit-transform: skew($val);
+}
+
+@mixin transform($args) {
+  transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  -webkit-transform: $args;
+}
+
+@mixin latinFont {
+  font-family: 'Quicksand', sans-serif;
+}
+
+@mixin arabicCalligraphy {
+  font-family: 'Reem Kufi', sans-serif;
+}
+
+@mixin arabicBasic {
+  // font-family: 'Amiri', serif;
+  font-family: 'UthmanTahaNaskh', serif;
+}
+
+@mixin rotate($val) {
+  transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  -webkit-transform: rotate($val);
+}
+
+@mixin Button {
+  cursor: pointer;
+  border: 1px solid $lightestBlack;
+  padding: .75rem 1.5rem;
+  @include borderRadius(2rem);
+  @include transition(all .2s ease);
+  font-weight: 600;
+  display: inline-block;
+  line-height: 1;
+  &:active,
+  &:focus,
+  &:hover {
+    outline: none;
+    text-decoration: none;
+    @include boxShadow(0, .2rem, .5rem);
+  }
+  @include breakpoint(768px) {
+    padding: 1rem 1.75rem;
+  }
+  @include breakpoint(992px) {
+    padding: 1rem 2.5rem;
+  }
+}

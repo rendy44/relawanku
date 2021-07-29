@@ -6,10 +6,13 @@
  * @package Relawanku
  */
 
-use Relawanku\Template;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-}
+} ?>
 
-Template::init()->render( 'footer' );
+<footer>
+	<div class="frow-container"></div>
+</footer>
+<?php wp_footer(); ?>
+</body>
+</html>
