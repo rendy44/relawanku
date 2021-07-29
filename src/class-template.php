@@ -120,7 +120,7 @@ if ( ! class_exists( 'Relawanku\Template' ) ) {
 		 *
 		 * @return string
 		 */
-		public function render( string $template_name, $vars = array(), $echo = false ) {
+		public function render( string $template_name, $vars = array(), $echo = true ) {
 			try {
 				$output = $this->blade->run( $template_name, $vars );
 			} catch ( \Exception $e ) {
