@@ -34,6 +34,13 @@ if ( ! class_exists( 'Relawanku\Template' ) ) {
 		private $blade;
 
 		/**
+		 * Functions list that will be added as directive.
+		 *
+		 * @var array
+		 */
+		private $directives;
+
+		/**
 		 * Template constructor.
 		 */
 		protected function __construct() {
@@ -46,7 +53,62 @@ if ( ! class_exists( 'Relawanku\Template' ) ) {
 			$cache = RELAWANKU__PATH . '/templates/caches';
 
 			// Instance the blade.
-			$this->blade = new BladeOne( $views, $cache, BladeOne::MODE_DEBUG ); // MODE_DEBUG allows to pinpoint troubles.
+			$this->blade = new BladeOne(
+				$views,
+				$cache,
+				BladeOne::MODE_DEBUG
+			); // MODE_DEBUG allows to pinpoint troubles.
+
+			// Register the directives.
+			$this->register_directive();
+		}
+
+		/**
+		 * Map directives.
+		 */
+		private function map_directives() {
+			$this->directives = array(
+				'wp_head',
+				'wp_footer',
+				'language_attributes',
+				'bloginfo',
+				'body_class',
+				'wp_body_open',
+				'do_action',
+				'wp_nav_menu',
+				'dynamic_sidebar',
+				'get_header',
+				'get_footer',
+				'get_template_part',
+				'the_post',
+				'post_class',
+				'the_content',
+				'the_archive_title',
+				'the_archive_description',
+				'the_permalink',
+				'comments_template',
+				'the_excerpt',
+				'edit_post_link',
+				'the_title',
+				'the_content',
+				'get_the_title',
+				'get_the_content',
+				'the_post_thumbnail',
+				'get_the_post_thumbnail',
+			);
+		}
+
+		/**
+		 * Register the directives.
+		 */
+		private function register_directive() {
+			// Map the directives.
+			$this->map_directives();
+
+			// Loop all directives.
+			foreach ( $this->directives as $fnc ) {
+				$this->blade->directiveRT( $fnc, $fnc );
+			}
 		}
 
 		/**
