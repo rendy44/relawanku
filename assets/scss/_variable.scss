@@ -7,7 +7,7 @@ $danger: #773333 !default;
 
 $blackText: lighten($black, 20%);
 $lightestBlack: rgba($black, .1);
-$light: darken($white, 5%);
+$light: darken($white, 7.5%);
 
 $colors: ('main':$main, 'success':$success, 'warning':$warning, 'danger':$danger);
 

@@ -44,13 +44,17 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\QRCode' ) ) {
 					'id'       => 'layout',
 					'callback' => function () {
 						global $post_id;
-						$qrcode = Helper::init()->get_post_meta( $post_id, 'qrcode_url' );
+						if ( $post_id ) {
+							$qrcode = Helper::init()->get_post_meta( $post_id, 'qrcode_url' );
 
-						// Validate qrcode.
-						if ( $qrcode ) {
-							return "<div style='text-align: center'><img src='{$qrcode}' class='attachment-post-thumbnail size-post-thumbnail' alt='' style='max-width: 100%'><br/><a href='{$qrcode}' target='_blank'>" . esc_html__( 'Download', 'relawanku' ) . '</a></div>';
+							// Validate qrcode.
+							if ( $qrcode ) {
+								return "<div style='text-align: center'><img src='{$qrcode}' class='attachment-post-thumbnail size-post-thumbnail' alt='' style='max-width: 100%'><br/><a href='{$qrcode}' target='_blank'>" . esc_html__( 'Download', 'relawanku' ) . '</a></div>';
+							} else {
+								return "<div style='text-align: center'><button type='button' class='button' id='gen-qrcode'>" . esc_html__( 'Click to generate', 'relawanku' ) . '</button></div>';
+							}
 						} else {
-							return "<div style='text-align: center'><button type='button' class='button' id='gen-qrcode'>" . esc_html__( 'Click to generate', 'relawanku' ) . '</button></div>';
+							return false;
 						}
 					},
 				)
