@@ -54,7 +54,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\QRCode' ) ) {
 								return "<div style='text-align: center'><button type='button' class='button' id='gen-qrcode'>" . esc_html__( 'Click to generate', 'relawanku' ) . '</button></div>';
 							}
 						} else {
-							return false;
+							return __( 'You can generate the qrcode once the volunteer data is saved', 'relawanku' );
 						}
 					},
 				)

@@ -37,27 +37,31 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Missions' ) ) {
 					'id'       => 'chart',
 					'callback' => function () {
 						global $post_id;
-						$query_missions = new \WP_Query();
-						$missions       = $query_missions->query(
-							array(
-								'post_type'      => 'mission',
-								'posts_per_page' => - 1,
-								'orderby'        => 'date',
-								'order'          => 'desc',
-								'post_status'    => 'publish',
-								'meta_query'     => array(
-									array(
-										'key'   => 'rlw_volunteer',
-										'value' => $post_id,
+						if ( $post_id ) {
+							$query_missions = new \WP_Query();
+							$missions       = $query_missions->query(
+								array(
+									'post_type'      => 'mission',
+									'posts_per_page' => - 1,
+									'orderby'        => 'date',
+									'order'          => 'desc',
+									'post_status'    => 'publish',
+									'meta_query'     => array(
+										array(
+											'key'   => 'rlw_volunteer',
+											'value' => $post_id,
+										),
 									),
-								),
-							)
-						);
+								)
+							);
 
-						if ( $query_missions->post_count > 0 ) {
-							return Template::init()->render( 'missions', compact( 'missions' ) );
+							if ( $query_missions->post_count > 0 ) {
+								return Template::init()->render( 'missions', compact( 'missions' ) );
+							} else {
+								return esc_html__( 'The volunteer has not joined any missions yet', 'relawanku' );
+							}
 						} else {
-							return esc_html__( 'The volunteer has not joined any missions yet', 'relawanku' );
+							return __( 'Missions information will be displayed here once the volunteer data is saved', 'relawanku' );
 						}
 					},
 				)
