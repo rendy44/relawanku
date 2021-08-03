@@ -1,10 +1,48 @@
 body.single.single-volunteer {
   .relawanku-hero {
-    padding: 0;
+    padding: 1rem 0 0;
 
     .hero-title-wrapper {
       background-color: $white;
-      padding: 3rem 1rem;
+      padding: 3rem 1rem 1rem;
+      border-bottom: 1px solid $lightestBlack;
+
+      > h1.hero-title {
+        font-size: 2.5rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .relawanku-section.section-volunteer {
+    .section-wrapper {
+      background-color: $white;
+      padding: 1rem;
+
+      > h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .details-row {
+        .detail-item {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: .75rem;
+
+          > label {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+          }
+
+          @include breakpoint(768px) {
+            flex-direction: row;
+            > label {
+              width: 200px;
+            }
+          }
+        }
+      }
     }
   }
 }
