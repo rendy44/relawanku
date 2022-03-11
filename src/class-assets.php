@@ -75,7 +75,7 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 				function () {
 					wp_enqueue_script(
 						'metabox',
-						RELAWANKU__URL . '/assets/js/metabox.js',
+						RELAWANKU__URL . '/assets/js/metabox.min.js',
 						array( 'jquery' ),
 						RELAWANKU__VERSION,
 						true
