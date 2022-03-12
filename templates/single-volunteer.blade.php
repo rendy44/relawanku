@@ -7,7 +7,7 @@
                     <h2>Details</h2>
                     <div class="details-row">
                         @foreach($details as $detailId => $detailArr)
-                            <div class="detail-item">
+                            <div class="detail-item item-{{$detailId}}">
                                 <label for="{{$detailId}}">{{$detailArr[0]}}</label>
                                 <span id="{{$detailId}}">{{$detailArr[1]}}</span>
                             </div>

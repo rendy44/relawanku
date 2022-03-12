@@ -1,3 +1,5 @@
+@import "../remixicon/remixicon.css";
+
 body.single.single-volunteer {
   .relawanku-hero {
     padding: 1rem 0 0;
@@ -6,10 +8,47 @@ body.single.single-volunteer {
       background-color: $white;
       padding: 3rem 1rem 1rem;
       border-bottom: 1px solid $lightestBlack;
+      @include breakpoint(768px){
+        padding: 3rem 2rem 1rem;
+      }
 
       > h1.hero-title {
         font-size: 2.5rem;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          font-size: 1.75rem;
+          
+          &:last-child{
+            margin-left: .5rem;
+            display: flex;
+            align-items: center;
+
+            &.verified{
+              color: #28a745;
+            }
+            &.unverified{
+              color: #dc3545;
+            }
+            i{
+              font-size: 1.5rem;
+            }
+          }
+
+          @include breakpoint(768px){
+            span {
+              font-size: 2rem;
+            }
+          }
+          @include breakpoint(992px){
+            span {
+              font-size: 2.5rem;
+            }
+          }
+        }
       }
     }
   }
@@ -18,6 +57,9 @@ body.single.single-volunteer {
     .section-wrapper {
       background-color: $white;
       padding: 1rem;
+      @include breakpoint(768px){
+        padding: 1rem 2rem 2rem;
+      }
 
       > h2 {
         font-size: 1.5rem;

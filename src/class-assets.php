@@ -33,6 +33,13 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 		private $front_css;
 
 		/**
+		 * Front-end js variable.
+		 *
+		 * @var array
+		 */
+		private $front_js;
+
+		/**
 		 * Assets constructor.
 		 */
 		protected function __construct() {
@@ -48,6 +55,10 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 			$this->front_css = array(
 				'app' => 'app.css',
 			);
+
+			$this->front_js = array(
+				'app' => 'app.min.js',
+			);
 		}
 
 		/**
@@ -61,6 +72,11 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 					// Front-end's css.
 					foreach ( $this->front_css as $css_key => $css_url ) {
 						wp_enqueue_style( $css_key, RELAWANKU__URL . '/assets/css/' . $css_url, array(), RELAWANKU__VERSION );
+					}
+
+					// Front-end's js.
+					foreach ( $this->front_js as $js_key => $js_url ) {
+						wp_enqueue_script( $js_key, RELAWANKU__URL . '/assets/js/' . $js_url, array( 'jquery' ), RELAWANKU__VERSION, true );
 					}
 				}
 			);
