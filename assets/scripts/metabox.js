@@ -37,14 +37,16 @@
         onAvailabilityChange() {
             const availabilitySelect = $('#rlw_availability'),
                 availabilityAmountInput = $('#rlw_amount'),
-                availabilityAmountInputWrapper = availabilityAmountInput.closest('.rwmb-field.rwmb-number-wrapper');
+                availabilityAmountInputWrapper = availabilityAmountInput.closest('.rwmb-field.rwmb-number-wrapper'),
+                availabilitySelectValue = availabilitySelect.val();
 
-            if (!availabilitySelect.val()) {
+            if (!availabilitySelectValue || 'unlimited' === availabilitySelectValue) {
                 availabilityAmountInputWrapper.hide();
             }
 
             availabilitySelect.change((e) => {
-                if ($(e.target).val()) {
+                const targetValue = $(e.target).val();
+                if (targetValue && 'unlimited' !== targetValue) {
                     availabilityAmountInputWrapper.show();
                 } else {
                     availabilityAmountInputWrapper.hide();
