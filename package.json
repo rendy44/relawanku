@@ -31,5 +31,8 @@
   "homepage": "https://github.com/rendy44/relawanku#readme",
   "devDependencies": {
     "@wordpress/scripts": "^19.0.0"
+  },
+  "dependencies": {
+    "frow": "^4.0.0"
   }
 }
