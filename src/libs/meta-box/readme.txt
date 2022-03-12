@@ -4,8 +4,8 @@ Donate link: https://metabox.io/pricing/
 Tags: meta box, custom fields, custom post types, custom taxonomies, cpt, meta boxes, custom field, post type, taxonomy, meta, admin, advanced, custom, edit, field, file, image, magic fields, post types, more fields, post, repeater, simple fields, text, textarea, type, cms, fields post
 Requires at least: 4.3
 Requires PHP: 5.6
-Tested up to: 5.7
-Stable tag: 5.4.0
+Tested up to: 5.9.1
+Stable tag: 5.6.1
 License: GPLv2 or later
 
 Meta Box plugin is a powerful, professional developer toolkit to create custom meta boxes and custom fields for your custom post types in WordPress.
@@ -167,6 +167,68 @@ To getting started with the plugin, please read the [Quick Start Guide](https://
 1. Post Taxonomy Fields
 
 == Changelog ==
+
+= 5.6.1 - 2022-03-08 =
+- Fix compatibility for PHP < 7.3
+
+= 5.6.0 - 2022-03-01 =
+- Field `background` and `file_input`: support showing image thumbnail
+- Add `link` param in helper functions for `taxonomy`, `post`, `user` fields to show `view`, `edit` link or plain text (`false`)
+- Add support for float values for range field
+- Add `minlength` as a common props for fields
+- Remove FILTER_SANITIZE_STRING to compatible with PHP 8
+- Fix PHP notice when run rwmb_the_value() for taxonomy field with no values
+
+= 5.5.1 - 2021-12-15 =
+- Fix warning for post field caused by the search by post title
+
+= 5.5.0 - 2021-12-14 =
+- Add `min_clone` parameter to set the minimum number of clones. Props @baden03.
+- Post field: find by title only
+- Meta Box Builder compatibility: parse choice options in real-time
+- Prevent inputs overflow the container
+
+= 5.4.8 - 2021-10-20 =
+- Respect `cols` attribute of `textarea` field to set the width of the input (without `cols`, textarea is 100% width)
+- Fix padding for seamless style in Gutenberg
+- Fix divider not showing in Gutenberg
+- Remove unnesseccary escape meta value
+
+= 5.4.7 - 2021-09-16 =
+- Fix deleting files and images inside groups.
+- Fix maxlength and pattern not working if not set inside attributes
+- Fix not switching tabs for wysiwyg editors
+- Fix unit for checkbox width
+- Fix remove clone button on top of inputs
+- Fix style for checked checkboxes on desktops
+- Hide hidden field with custom class, not .hidden
+
+= 5.4.6 - 2021-07-08 =
+- Remove debug code
+
+= 5.4.5 - 2021-07-08 =
+- Fix styling issue for heading field and side meta boxes
+
+= 5.4.4 - 2021-07-06 =
+- Improve usability for time picker on mobile by adding +/- buttons
+- Make all input, select, textarea 100% width
+- Export clone functions to the global "rwmb"
+
+= 5.4.3 - 2021-06-30 =
+- Fix trailing comma in function call for PHP < 7.3
+
+= 5.4.2 - 2021-06-29 =
+- Improve style for media fields to reuse style/HTML markup.
+- Make input, select, input group, select2, textarea full width on the side context.
+- Improve style for button group when buttons don't have same width.
+- Set better default options for date time pickers.
+- Allow to output HTML in input prepend/append (ex. icon).
+- Add filter `rwmb_dismiss_dashboard_widget` to dismiss dashboard widget.
+
+= 5.4.1 - 2021-06-01 =
+- Improve style for prepend, append text
+- Improve style for select2 on mobiles
+- Make select_tree extend select_advanced and respect select_advanced options
 
 = 5.4.0 - 2021-05-08 =
 - Shortcode: add `render_shortcodes` attribute (default true) to allow render inner shortcodes.

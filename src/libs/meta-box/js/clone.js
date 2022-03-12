@@ -156,8 +156,14 @@
 	 * @param $container .rwmb-input container
 	 */
 	function toggleRemoveButtons( $container ) {
-		var $clones = $container.children( '.rwmb-clone' );
-		$clones.children( '.remove-clone' ).toggle( $clones.length > 1 );
+
+		var $clones = $container.children( '.rwmb-clone' ),
+		    minClone = 1;
+	
+		if ( $container.data( 'min-clone' ) ) {
+			minClone = parseInt( $container.data( 'min-clone' ) );
+		}
+		$clones.children( '.remove-clone' ).toggle( $clones.length > minClone );
 
 		// Recursive for nested groups.
 		$container.find( '.rwmb-input' ).each( function () {
@@ -255,4 +261,11 @@
 		.on( 'mb_ready', init )
 		.on( 'click', '.add-clone', addClone )
 		.on( 'click', '.remove-clone', removeClone );
+
+	// Export for use outside.
+	rwmb.cloneIndex = cloneIndex;
+	rwmb.cloneValue = cloneValue;
+	rwmb.sortClones = sortClones;
+	rwmb.toggleRemoveButtons = toggleRemoveButtons;
+	rwmb.toggleAddButton = toggleAddButton;
 } )( jQuery, rwmb );
