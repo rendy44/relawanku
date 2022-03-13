@@ -74,5 +74,62 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 
 			return date_i18n( $format, $timestamp );
 		}
+
+		/**
+		 * Get available divisions.
+		 *
+		 * @return array
+		 */
+		public function get_divisions() {
+			return array(
+				'brd' => esc_html_x( 'Board', 'division', 'relawanku' ),
+				'amb' => esc_html_x( 'Ambulance', 'division', 'relawanku' ),
+				'vfk' => esc_html_x( 'Verificator', 'division', 'relawanku' ),
+				'adv' => esc_html_x( 'Advance', 'division', 'relawanku' ),
+				'urc' => esc_html_x( 'URC', 'division', 'relawanku' ),
+				'vol' => esc_html_x( 'Volunteer', 'division', 'relawanku' ),
+			);
+		}
+
+		/**
+		 * Transate division key into readable name.
+		 *
+		 * @param string $key key of the division.
+		 * @return string|bool
+		 */
+		public function translate_division( $key ) {
+			$divisions = $this->get_divisions();
+
+			return ! empty( $divisions[ $key ] ) ? $divisions[ $key ] : false;
+		}
+
+		/**
+		 * Get available positions.
+		 *
+		 * @return array
+		 */
+		public function get_positions() {
+			return array(
+				'dir' => esc_html_x( 'Director', 'position', 'relawanku' ),
+				'trs' => esc_html_x( 'Treasurer', 'position', 'relawanku' ),
+				'sec' => esc_html_x( 'Secretary', 'position', 'relawanku' ),
+				'act' => esc_html_x( 'Accountant', 'position', 'relawanku' ),
+				'chf' => esc_html_x( 'Chief', 'position', 'relawanku' ),
+				'mmb' => esc_html_x( 'Member', 'position', 'relawanku' ),
+				'adm' => esc_html_x( 'Administrator', 'position', 'relawanku' ),
+			);
+		}
+
+		/**
+		 * Translate position into readable name.
+		 *
+		 * @param string $key key of the position.
+		 * @return string|bool
+		 */
+		public function translate_position( $key ) {
+			$positions = $this->get_positions();
+
+			return ! empty( $positions[ $key ] ) ? $positions[ $key ] : false;
+		}
 	}
 }

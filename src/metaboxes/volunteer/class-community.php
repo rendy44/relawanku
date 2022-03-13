@@ -10,6 +10,7 @@
 namespace Relawanku\Metaboxes\Volunteer;
 
 use Relawanku\Abstracts\Metabox;
+use Relawanku\Helper;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -25,9 +26,18 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Community' ) ) {
 	final class Community extends Metabox {
 
 		/**
+		 * Helper instance.
+		 *
+		 * @var null
+		 */
+		private $helper;
+
+		/**
 		 * Community constructor.
 		 */
 		protected function __construct() {
+			$this->helper = Helper::init();
+
 			parent::__construct( 'community', __( 'Community Information', 'relawanku' ), array( 'volunteer' ) );
 
 			$this
@@ -44,14 +54,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Community' ) ) {
 						'type'        => 'select_advanced',
 						'name'        => esc_html__( 'Division', 'relawanku' ),
 						'id'          => 'division',
-						'options'     => array(
-							'brd' => esc_html_x( 'Board', 'division', 'relawanku' ),
-							'amb' => esc_html_x( 'Ambulance', 'division', 'relawanku' ),
-							'vfk' => esc_html_x( 'Verificator', 'division', 'relawanku' ),
-							'adv' => esc_html_x( 'Advance', 'division', 'relawanku' ),
-							'urc' => esc_html_x( 'URC', 'division', 'relawanku' ),
-							'vol' => esc_html_x( 'Volunteer', 'division', 'relawanku' ),
-						),
+						'options'     => $this->helper->get_divisions(),
 						'placeholder' => esc_html__( 'Select division', 'relawanku' ),
 						'multiple'    => true,
 					)
@@ -61,15 +64,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Community' ) ) {
 						'type'        => 'select',
 						'name'        => esc_html__( 'Position', 'relawanku' ),
 						'id'          => 'position',
-						'options'     => array(
-							'dir' => esc_html_x( 'Director', 'position', 'relawanku' ),
-							'trs' => esc_html_x( 'Treasurer', 'position', 'relawanku' ),
-							'sec' => esc_html_x( 'Secretary', 'position', 'relawanku' ),
-							'act' => esc_html_x( 'Accountant', 'position', 'relawanku' ),
-							'chf' => esc_html_x( 'Chief', 'position', 'relawanku' ),
-							'mmb' => esc_html_x( 'Member', 'position', 'relawanku' ),
-							'adm' => esc_html_x( 'Administrator', 'position', 'relawanku' ),
-						),
+						'options'     => $this->helper->get_positions(),
 						'placeholder' => esc_html_x( 'Select position', 'relawanku' ),
 					)
 				)
