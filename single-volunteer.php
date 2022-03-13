@@ -55,7 +55,7 @@ while ( have_posts() ) {
 	}
 	if ( $divisions ) {
 		$formatted_division = array_map(
-			function( $division ) use ( $helper ) {
+			function ( $division ) use ( $helper ) {
 				return $helper->translate_division( $division );
 			},
 			$divisions
@@ -72,12 +72,56 @@ while ( have_posts() ) {
 	$skills = get_the_terms( $volunteer_id, 'skill' );
 	if ( $skills ) {
 		$skills = array_map(
-			function( $skill ) {
+			function ( $skill ) {
 				return $skill->name;
 			},
 			$skills
 		);
 	}
+
+	// Select missions.
+	$missions       = array();
+	$missions_query = new WP_Query(
+		array(
+			'post_type'      => 'mission',
+			'posts_per_page' => -1,
+			'meta_query'     => array(
+				array(
+					'key'     => 'rlw_volunteer',
+					'value'   => $volunteer_id,
+					'compare' => '=',
+				),
+			),
+		)
+	);
+
+	if ( $missions_query->have_posts() ) {
+		while ( $missions_query->have_posts() ) {
+			$missions_query->the_post();
+
+			// Get few details.
+			$mission_id       = get_the_ID();
+			$start_date       = $helper->get_post_meta( $mission_id, 'date_start' );
+			$end_date         = $helper->get_post_meta( $mission_id, 'date_end' );
+			$volunteers       = $helper->get_post_meta( $mission_id, 'volunteer', false );
+			$volunteers_count = $volunteers ? count( $volunteers ) : 0;
+			$volunteers_label = '';
+			if ( $volunteers_count > 1 ) {
+				$other_volunteers_count = $volunteers_count - 1;
+				$volunteers_label       = sprintf( _n( 'Alongside %s other volunteer', 'Alongside %s other volunteers', $other_volunteers_count, 'relawanku' ), $other_volunteers_count ); // phpcs:ignore
+			}
+
+			// Build the array.
+			$missions[ $mission_id ] = array(
+				'title'      => get_the_title(),
+				'start'      => $start_date ? $helper->timestamp_to_date( $start_date, 'F Y' ) : false,
+				'end'        => $end_date ? $helper->timestamp_to_date( $end_date, 'F Y' ) : false,
+				'location'   => $helper->get_post_meta( $mission_id, 'location' ),
+				'volunteers' => $volunteers_label,
+			);
+		}
+	}
+	wp_reset_postdata();
 
 	// Define the section title.
 	$section_information = __( 'Information', 'relawanku' );
@@ -92,6 +136,7 @@ while ( have_posts() ) {
 			'volunteer_name',
 			'position',
 			'skills',
+			'missions',
 			'section_information',
 			'section_skills',
 			'section_missions',

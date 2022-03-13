@@ -64,28 +64,32 @@
     </section>
 @endif
 
-<section class="volunteer-section missions-section">
-	<div class="frow-container">
-		<div class="frow">
-			<div class="col-md-2-3">
-				<div class="inner-wrapper">
-					<h2>{{ $section_missions }}</h2>
-					<div class="missions-wrapper">
-                        <div class="mission-item">
-                            <h4>Mission Long Name</h4>
-                            <p class="mission-location">Padang, Indonesia</p>
-                            <p class="mission-period">July 2021 - September 2021</p>
-                            <p class="mission-desc">Alongside 6 other volunteers</p>
-                        </div>
-                        <div class="mission-item">
-                            <h4>Second Mission Name</h4>
-                            <p class="mission-location">Sumbawa, Indonesia</p>
-                            <p class="mission-period">Feb 2020 - Maret 2020</p>
-                            <p class="mission-desc">Alongside 8 other volunteers</p>
-                        </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+@if($missions)
+    <section class="volunteer-section missions-section">
+	    <div class="frow-container">
+		    <div class="frow">
+			    <div class="col-md-2-3">
+				    <div class="inner-wrapper">
+					    <h2>{{ $section_missions }}</h2>
+					    <div class="missions-wrapper">
+                            @foreach($missions as $missionId => $mission)
+                                <div class="mission-item">
+                                    <h4>{{ $mission['title'] }}</h4>
+                                    @if(!empty($mission['location']))
+                                        <p class="mission-location">{{ $mission['location'] }}</p>
+                                    @endif
+                                    @if($mission['start'])
+                                        <p class="mission-period">{{ $mission['start']}} {{ $mission['end'] ? '- ' . $mission['end'] : ''}}</p>
+                                    @endif                 
+                                    @if(!empty($mission['volunteers']))               
+                                        <p class="mission-desc">{{ $mission['volunteers'] }}</p>
+                                    @endif
+                                </div>
+                            @endforeach
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+    </section>
+@endif
