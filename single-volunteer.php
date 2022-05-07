@@ -36,7 +36,7 @@ while ( have_posts() ) {
 
 	// Check the status validity.
 	if ( $valid_from_timestamp && $valid_to_timestamp ) {
-		$current_timestamp = current_time( 'timestamp' );
+		$current_timestamp = current_time( 'timestamp' ); // phpcs:ignore
 		$is_valid          = $current_timestamp >= $valid_from_timestamp && $current_timestamp <= $valid_to_timestamp;
 	}
 
@@ -65,7 +65,7 @@ while ( have_posts() ) {
 	}
 
 	if ( $valid_from && $valid_to ) {
-		$details['validity'] = array( __( 'Valid date', 'relawanku' ), "{$valid_from} to {$valid_to}" );
+		$details['validity'] = array( __( 'Valid date', 'relawanku' ), "$valid_from to $valid_to" );
 	}
 
 	// Get skills information.
@@ -85,7 +85,7 @@ while ( have_posts() ) {
 		array(
 			'post_type'      => 'mission',
 			'posts_per_page' => -1,
-			'meta_query'     => array(
+			'meta_query'     => array( // phpcs:ignore
 				array(
 					'key'     => 'rlw_volunteer',
 					'value'   => $volunteer_id,

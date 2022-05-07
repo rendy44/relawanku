@@ -20,6 +20,7 @@ use Relawanku\Taxonomies\Skill;
 use Relawanku\Traits\Singleton;
 use Relawanku\Types\Mission;
 use Relawanku\Types\Volunteer;
+use RWMB_Loader;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -92,7 +93,7 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 
 			// Load metabox.
 			require_once RELAWANKU__PATH . '/src/libs/meta-box/inc/loader.php';
-			$metabox = new \RWMB_Loader();
+			$metabox = new RWMB_Loader();
 			$metabox->init();
 		}
 

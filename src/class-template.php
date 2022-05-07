@@ -10,6 +10,7 @@
 namespace Relawanku;
 
 use eftec\bladeone\BladeOne;
+use Exception;
 use Relawanku\Traits\Singleton;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -116,14 +117,14 @@ if ( ! class_exists( 'Relawanku\Template' ) ) {
 		 *
 		 * @param string $template_name name of the template file.
 		 * @param array  $vars variable collections that will be injected into blade.
-		 * @param false  $echo whether echo the output.
+		 * @param bool   $echo whether echo the output.
 		 *
 		 * @return string
 		 */
-		public function render( string $template_name, $vars = array(), $echo = true ) {
+		public function render( $template_name, $vars = array(), $echo = true ) {
 			try {
 				$output = $this->blade->run( $template_name, $vars );
-			} catch ( \Exception $e ) {
+			} catch ( Exception $e ) {
 				$output = $e->getMessage();
 			}
 

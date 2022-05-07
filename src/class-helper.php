@@ -35,7 +35,7 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function get_post_meta( int $post_id, string $key, $single = true ) {
+		public function get_post_meta( $post_id, $key, $single = true ) {
 			return get_post_meta( $post_id, RELAWANKU__PREFIX . $key, $single );
 		}
 
@@ -49,7 +49,7 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		 *
 		 * @return false|int
 		 */
-		public function add_post_meta( int $post_id, string $key, $value, $unique = true ) {
+		public function add_post_meta( $post_id, $key, $value, $unique = true ) {
 			return add_post_meta( $post_id, RELAWANKU__PREFIX . $key, $value, $unique );
 		}
 
@@ -61,7 +61,7 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		 *
 		 * @return string
 		 */
-		public function timestamp_to_date( string $timestamp, $format = '' ) {
+		public function timestamp_to_date( $timestamp, $format = '' ) {
 
 			// Make sure timestamp is provided.
 			if ( ! $timestamp ) {
@@ -92,9 +92,10 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		}
 
 		/**
-		 * Transate division key into readable name.
+		 * Translate division key into readable name.
 		 *
 		 * @param string $key key of the division.
+		 *
 		 * @return string|bool
 		 */
 		public function translate_division( $key ) {
@@ -124,6 +125,7 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		 * Translate position into readable name.
 		 *
 		 * @param string $key key of the position.
+		 *
 		 * @return string|bool
 		 */
 		public function translate_position( $key ) {

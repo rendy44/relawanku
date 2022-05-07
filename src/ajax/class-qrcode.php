@@ -28,7 +28,7 @@ if ( ! class_exists( 'Relawanku\Ajax\QRCode' ) ) {
 		/**
 		 * Abstract method
 		 *
-		 * @return mixed
+		 * @return array|string
 		 */
 		protected function handle() {
 			$volunteer_id = $this->get( 'volunteer' );
@@ -51,9 +51,9 @@ if ( ! class_exists( 'Relawanku\Ajax\QRCode' ) ) {
 				Helper::init()->add_post_meta( $volunteer_id, 'qrcode_url', $qrcode_url );
 
 				// Update result.
-				$this->set_status( true );
+				$this->set_status();
 
-				return "<img src='{$qrcode_url}' class='attachment-post-thumbnail size-post-thumbnail' alt='' style='max-width: 100%'><br/><a href='{$qrcode_url}' target='_blank'>" . esc_html__( 'Download', 'relawanku' ) . '</a>';
+				return "<img src='$qrcode_url' class='attachment-post-thumbnail size-post-thumbnail' alt='' style='max-width: 100%'><br/><a href='$qrcode_url' target='_blank'>" . esc_html__( 'Download', 'relawanku' ) . '</a>';
 			} else {
 				return $qrcode->get_messages();
 			}

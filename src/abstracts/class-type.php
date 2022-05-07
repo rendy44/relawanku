@@ -52,7 +52,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\Type' ) ) {
 		/**
 		 * Get final args.
 		 *
-		 * @return array|object|string
+		 * @return array
 		 */
 		private function final_args() {
 

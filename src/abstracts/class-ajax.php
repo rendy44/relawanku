@@ -51,7 +51,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\Ajax' ) ) {
 
 			// Register new ajax endpoint.
 			add_action(
-				'wp_ajax_' . RELAWANKU__PREFIX . "{$this->endpoint}",
+				'wp_ajax_' . RELAWANKU__PREFIX . "$this->endpoint",
 				function () {
 					wp_send_json( $this->result() );
 				}
@@ -60,7 +60,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\Ajax' ) ) {
 			// Maybe register the non-privilege endpoint.
 			if ( $this->no_privilege ) {
 				add_action(
-					'wp_ajax_nopriv_' . RELAWANKU__PREFIX . "{$this->endpoint}",
+					'wp_ajax_nopriv_' . RELAWANKU__PREFIX . "$this->endpoint",
 					function () {
 						wp_send_json( $this->result() );
 					}

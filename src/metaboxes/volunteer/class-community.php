@@ -28,7 +28,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Community' ) ) {
 		/**
 		 * Helper instance.
 		 *
-		 * @var null
+		 * @var Helper|null
 		 */
 		private $helper;
 

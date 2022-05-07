@@ -11,6 +11,7 @@ namespace Relawanku\Metaboxes\Volunteer;
 
 use Relawanku\Abstracts\Metabox;
 use Relawanku\Template;
+use WP_Query;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -38,7 +39,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Missions' ) ) {
 					'callback' => function () {
 						global $post_id;
 						if ( $post_id ) {
-							$query_missions = new \WP_Query();
+							$query_missions = new WP_Query();
 							$missions       = $query_missions->query(
 								array(
 									'post_type'      => 'mission',
@@ -46,7 +47,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Missions' ) ) {
 									'orderby'        => 'date',
 									'order'          => 'desc',
 									'post_status'    => 'publish',
-									'meta_query'     => array(
+									'meta_query'     => array( // phpcs:ignore
 										array(
 											'key'   => 'rlw_volunteer',
 											'value' => $post_id,

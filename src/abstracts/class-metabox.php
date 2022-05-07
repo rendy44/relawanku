@@ -60,7 +60,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\metabox' ) ) {
 		 * @param string   $title title of the metabox.
 		 * @param string[] $post_types where the metabox should be displayed.
 		 */
-		protected function __construct( $id, $title = '', $post_types = array( 'post' ) ) {
+		protected function __construct( $id, $title = '', array $post_types = array( 'post' ) ) {
 			// Save the config.
 			$this->instance( $id, $title, $post_types );
 
@@ -86,10 +86,10 @@ if ( ! class_exists( 'Relawanku\Abstracts\metabox' ) ) {
 		 * @param string   $title title of the metabox.
 		 * @param string[] $post_types where the metabox should be displayed.
 		 */
-		private function instance( $id, $title = '', $post_types = array( 'post' ) ) {
+		private function instance( $id, $title = '', array $post_types = array( 'post' ) ) {
 			$this->set_metabox_args(
 				array(
-					'title'      => $title ? $title : $this->generate_default_title( sanitize_title( $id ) ),
+					'title'      => $title ?: $this->generate_default_title( sanitize_title( $id ) ), // phpcs:ignore
 					'id'         => sanitize_title( $id ),
 					'post_types' => $post_types,
 					'context'    => $this->position,
@@ -106,7 +106,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\metabox' ) ) {
 		 *
 		 * @return Metabox
 		 */
-		private function set_metabox_args( $metabox_args ) {
+		private function set_metabox_args( array $metabox_args ) {
 			$this->metabox_args = $metabox_args;
 
 			return $this;
@@ -118,7 +118,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\metabox' ) ) {
 		 * @param string $key args key.
 		 * @param array  $args value of the args.
 		 */
-		private function alter_metabox_args( $key, $args ) {
+		private function alter_metabox_args( $key, array $args ) {
 			foreach ( $this->get_metabox_args() as $key_args => $value_arg ) {
 				if ( $key_args === $key ) {
 					$this->metabox_args[ $key ] = $args;
@@ -143,7 +143,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\metabox' ) ) {
 		 *
 		 * @return Metabox
 		 */
-		protected function add_field( $args ) {
+		protected function add_field( array $args ) {
 
 			// Create field id based on field number.
 			$field_id = ! empty( $this->fields ) ? count( $this->fields ) : 0;
