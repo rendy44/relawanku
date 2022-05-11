@@ -40,12 +40,20 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 		private $front_js;
 
 		/**
+		 * Admin js variable.
+		 *
+		 * @var array
+		 */
+		private $admin_js;
+
+		/**
 		 * Assets constructor.
 		 */
 		protected function __construct() {
 			$this->metabox_assets();
 			$this->map_assets();
 			$this->front_end_assets();
+			$this->admin_assets();
 		}
 
 		/**
@@ -58,6 +66,10 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 
 			$this->front_js = array(
 				'app' => 'app.min.js',
+			);
+
+			$this->admin_js = array(
+				'admin' => 'admin.min.js',
 			);
 		}
 
@@ -78,6 +90,33 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 					foreach ( $this->front_js as $js_key => $js_url ) {
 						wp_enqueue_script( $js_key, RELAWANKU__URL . '/assets/js/' . $js_url, array( 'jquery' ), RELAWANKU__VERSION, true );
 					}
+				}
+			);
+		}
+
+		/**
+		 * Enqueue admin's assets.
+		 *
+		 * @return void
+		 */
+		private function admin_assets() {
+			add_action(
+				'admin_enqueue_scripts',
+				function () {
+
+					// Admin js.
+					foreach ( $this->admin_js as $js_key => $js_url ) {
+						wp_enqueue_script( $js_key, RELAWANKU__URL . '/assets/js/' . $js_url, array( 'jquery', 'wp-util' ), RELAWANKU__VERSION, true );
+					}
+
+					wp_localize_script(
+						'admin',
+						'rlw',
+						array(
+							'ajax_url' => admin_url( 'admin-ajax.php' ),
+							'prefix'   => RELAWANKU__PREFIX,
+						)
+					);
 				}
 			);
 		}

@@ -44,6 +44,13 @@ if ( ! trait_exists( 'Relawanku\Traits\Result' ) ) {
 		private $data;
 
 		/**
+		 * List of additional data.
+		 *
+		 * @var array
+		 */
+		private $additional_data = array();
+
+		/**
 		 * Method to set result's success status.
 		 *
 		 * @param bool $success whether the status is success.
@@ -110,11 +117,27 @@ if ( ! trait_exists( 'Relawanku\Traits\Result' ) ) {
 		 * @return array
 		 */
 		public function get_result() {
-			return array(
-				'success'  => $this->is_success(),
-				'data'     => $this->get_data(),
-				'messages' => $this->get_messages(),
+			return array_merge(
+				$this->additional_data,
+				array(
+					'success'  => $this->is_success(),
+					'data'     => $this->get_data(),
+					'messages' => $this->get_messages(),
+				)
 			);
+		}
+
+
+		/**
+		 * Method to add attribute to the result.
+		 *
+		 * @param string $key name of the attribute.
+		 * @param mixed  $value value of the attribute.
+		 *
+		 * @return void
+		 */
+		public function add_attribute( $key, $value ) {
+			$this->additional_data[ $key ] = $value;
 		}
 	}
 }

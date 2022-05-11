@@ -9,6 +9,7 @@
 
 namespace Relawanku\Abstracts;
 
+use Relawanku\Helper;
 use Relawanku\Traits\Result;
 use Relawanku\Traits\Singleton;
 
@@ -35,6 +36,13 @@ if ( ! class_exists( 'Relawanku\Abstracts\Ajax' ) ) {
 		protected $no_privilege = false;
 
 		/**
+		 * Helper class instance.
+		 *
+		 * @var Helper
+		 */
+		protected $helper;
+
+		/**
 		 * Ajax endpoint variable.
 		 *
 		 * @var string
@@ -48,6 +56,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\Ajax' ) ) {
 		 */
 		protected function __construct( $endpoint ) {
 			$this->endpoint = $endpoint;
+			$this->helper   = Helper::init();
 
 			// Register new ajax endpoint.
 			add_action(
@@ -111,15 +120,16 @@ if ( ! class_exists( 'Relawanku\Abstracts\Ajax' ) ) {
 		/**
 		 * Get posted obj.
 		 *
-		 * @param string $key specific key for submitted object.
+		 * @param string      $key specific key for submitted object.
+		 * @param bool|string $default default value if key doesn't exist.
 		 *
 		 * @return array|false|mixed
 		 */
-		protected function get( $key = '' ) {
+		protected function get( $key = '', $default = false ) {
 
 			// Maybe filter by key.
 			if ( $key ) {
-				return isset( $_REQUEST[ $key ] ) ? $_REQUEST[ $key ] : false; // phpcs:ignore.WordPress.Security
+				return isset( $_REQUEST[ $key ] ) ? $_REQUEST[ $key ] : $default; // phpcs:ignore.WordPress.Security
 			}
 
 			return $_REQUEST; // phpcs:ignore.WordPress.Security.NonceVerification

@@ -33,6 +33,7 @@
     "@wordpress/scripts": "^19.0.0"
   },
   "dependencies": {
+    "export-to-csv": "^0.2.1",
     "frow": "^4.0.0"
   }
 }

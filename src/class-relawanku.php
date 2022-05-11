@@ -9,6 +9,7 @@
 
 namespace Relawanku;
 
+use Relawanku\Ajax\Volunteers;
 use Relawanku\Metaboxes\Mission\Basic;
 use Relawanku\Metaboxes\Volunteer\Community;
 use Relawanku\Metaboxes\Volunteer\Contact;
@@ -61,6 +62,9 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 
 			// Register custom ajax endpoints.
 			$this->reg_ajax();
+
+			// Register custom hooks.
+			$this->reg_hooks();
 
 			// Load text domain.
 			$this->load_text_domain();
@@ -134,6 +138,22 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 		 */
 		private function reg_ajax() {
 			Ajax\QRCode::init();
+			Volunteers::init();
+		}
+
+		/**
+		 * Method for registering custom hooks.
+		 *
+		 * @return void
+		 */
+		private function reg_hooks() {
+			add_filter(
+				'views_edit-volunteer',
+				function ( $screens ) {
+					$screens['export'] = '<a href="#" id="exp-volunteer">' . __( 'Export', 'relawanku' ) . '</a>';
+					return $screens;
+				}
+			);
 		}
 
 		/**
