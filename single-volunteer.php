@@ -69,15 +69,7 @@ while ( have_posts() ) {
 	}
 
 	// Get skills information.
-	$skills = get_the_terms( $volunteer_id, 'skill' );
-	if ( $skills ) {
-		$skills = array_map(
-			function ( $skill ) {
-				return $skill->name;
-			},
-			$skills
-		);
-	}
+	$skills = $helper->get_volunteer_skills( $volunteer_id );
 
 	// Select missions.
 	$missions       = array();

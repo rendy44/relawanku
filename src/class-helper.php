@@ -105,6 +105,84 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		}
 
 		/**
+		 * Get available genders.
+		 *
+		 * @return array
+		 */
+		public function get_genders() {
+			return array(
+				'male'   => esc_html__( 'Male', 'relawanku' ),
+				'female' => esc_html__( 'Female', 'relawanku' ),
+			);
+		}
+
+		/**
+		 * Translate gender into readable name.
+		 *
+		 * @param string $key key of the gender.
+		 *
+		 * @return string|bool
+		 */
+		public function translate_gender( $key ) {
+			$genders = $this->get_genders();
+
+			return ! empty( $genders[ $key ] ) ? $genders[ $key ] : false;
+		}
+
+		/**
+		 * Get available marital status.
+		 *
+		 * @return array
+		 */
+		public function get_status() {
+			return array(
+				'single'  => esc_html__( 'Single', 'relawanku' ),
+				'married' => esc_html__( 'Married', 'relawanku' ),
+				'widowed' => esc_html__( 'Widowed', 'relawanku' ),
+			);
+		}
+
+		/**
+		 * Translate status into readable name.
+		 *
+		 * @param string $key key of the status.
+		 *
+		 * @return string|bool
+		 */
+		public function translate_status( $key ) {
+			$status = $this->get_status();
+
+			return ! empty( $status[ $key ] ) ? $status[ $key ] : false;
+		}
+
+		/**
+		 * Get available blood types.
+		 *
+		 * @return array
+		 */
+		public function get_blood_types() {
+			return array(
+				'a'  => esc_html_x( 'A', 'blood', 'relawanku' ),
+				'b'  => esc_html_x( 'B', 'blood', 'relawanku' ),
+				'ab' => esc_html_x( 'AB', 'blood', 'relawanku' ),
+				'o'  => esc_html_x( 'O', 'blood', 'relawanku' ),
+			);
+		}
+
+		/**
+		 * Translate blood type into readable name.
+		 *
+		 * @param string $key key of the status.
+		 *
+		 * @return string|bool
+		 */
+		public function translate_blood_type( $key ) {
+			$blood_types = $this->get_blood_types();
+
+			return ! empty( $blood_types[ $key ] ) ? $blood_types[ $key ] : false;
+		}
+
+		/**
 		 * Get available positions.
 		 *
 		 * @return array
@@ -132,6 +210,29 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 			$positions = $this->get_positions();
 
 			return ! empty( $positions[ $key ] ) ? $positions[ $key ] : false;
+		}
+
+		/**
+		 * Method to get volunteer's skills.
+		 *
+		 * @param int  $id id of the volunteer.
+		 * @param bool $return_as_array whether return as array or string.
+		 *
+		 * @return array|string
+		 */
+		public function get_volunteer_skills( $id, $return_as_array = true ) {
+			$skills    = get_the_terms( $id, 'skill' );
+			$skills_tr = array_map(
+				function ( $skill ) {
+					return $skill->name;
+				},
+				$skills
+			);
+			if ( ! $return_as_array ) {
+				return implode( ', ', $skills_tr );
+			}
+
+			return $skills_tr;
 		}
 	}
 }
