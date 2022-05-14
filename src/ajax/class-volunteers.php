@@ -10,7 +10,6 @@
 namespace Relawanku\Ajax;
 
 use Relawanku\Abstracts\Ajax;
-use WP_Post;
 use WP_Query;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -61,8 +60,8 @@ if ( ! class_exists( 'Relawanku\Ajax\Volunteers' ) ) {
 					$id       = get_the_ID();
 					$output[] = array(
 						'name'    => get_the_title(),
-						'id_card' => $this->helper->get_post_meta( $id, 'id_card_number' ),
-						'blood'   => $this->helper->get_post_meta( $id, 'blood_type' ),
+						'id_card' => $this->helpers->get_post_meta( $id, 'id_card_number' ),
+						'blood'   => $this->helpers->get_post_meta( $id, 'blood_type' ),
 					);
 				}
 			} else {
