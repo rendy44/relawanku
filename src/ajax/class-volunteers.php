@@ -82,6 +82,7 @@ if ( ! class_exists( 'Relawanku\Ajax\Volunteers' ) ) {
 						'blood'          => $this->helpers->translate_blood_type( $blood ),
 						'marital_status' => $this->helpers->translate_status( $marital_status ),
 						'skills'         => $this->helpers->get_volunteer_skills( $id, false ),
+						'contact'        => $this->helpers->get_post_meta( $id, 'phone' ),
 					);
 				}
 			} else {
