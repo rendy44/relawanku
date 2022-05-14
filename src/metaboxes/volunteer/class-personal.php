@@ -36,10 +36,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Personal' ) ) {
 						'type'    => 'select',
 						'name'    => esc_html__( 'Gender', 'relawanku' ),
 						'id'      => 'gender',
-						'options' => array(
-							'male'   => esc_html__( 'Male', 'relawanku' ),
-							'female' => esc_html__( 'Female', 'relawanku' ),
-						),
+						'options' => $this->helpers->get_genders(),
 						'std'     => 'male',
 					)
 				)
@@ -75,12 +72,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Personal' ) ) {
 						'name'        => esc_html__( 'Blood type', 'relawanku' ),
 						'id'          => 'blood_type',
 						'placeholder' => esc_html__( 'Select blood type', 'relawanku' ),
-						'options'     => array(
-							'a'  => esc_html_x( 'A', 'blood', 'relawanku' ),
-							'b'  => esc_html_x( 'B', 'blood', 'relawanku' ),
-							'ab' => esc_html_x( 'AB', 'blood', 'relawanku' ),
-							'o'  => esc_html_x( 'O', 'blood', 'relawanku' ),
-						),
+						'options'     => $this->helpers->get_blood_types(),
 					)
 				)
 				->add_field(
@@ -88,11 +80,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Personal' ) ) {
 						'type'    => 'select',
 						'name'    => esc_html__( 'Marital status', 'relawanku' ),
 						'id'      => 'marital_status',
-						'options' => array(
-							'single'  => esc_html__( 'Single', 'relawanku' ),
-							'married' => esc_html__( 'Married', 'relawanku' ),
-							'widowed' => esc_html__( 'Widowed', 'relawanku' ),
-						),
+						'options' => $this->helpers->get_status(),
 						'std'     => 'single',
 					)
 				)

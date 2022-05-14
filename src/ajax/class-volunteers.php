@@ -44,9 +44,10 @@ if ( ! class_exists( 'Relawanku\Ajax\Volunteers' ) ) {
 			// Query all the volunteers.
 			$query_volunteers = new WP_Query(
 				array(
-					'post_type' => 'volunteer',
-					'paged'     => $page,
-					'status'    => 'published',
+					'post_type'      => 'volunteer',
+					'paged'          => $page,
+					'status'         => 'published',
+					'posts_per_page' => - 1,
 				)
 			);
 
@@ -57,11 +58,33 @@ if ( ! class_exists( 'Relawanku\Ajax\Volunteers' ) ) {
 				// Loop the volunteers.
 				while ( $query_volunteers->have_posts() ) {
 					$query_volunteers->the_post();
-					$id       = get_the_ID();
+					$id = get_the_ID();
+
+					// Get volunteer's details.
+					$position       = $this->helpers->get_post_meta( $id, 'position' );
+					$divisions      = $this->helpers->get_post_meta( $id, 'division', false );
+					$divisions_tr   = array_map(
+						function ( $div ) {
+							return $this->helpers->translate_division( $div, '' );
+						},
+						$divisions
+					);
+					$valid_from     = $this->helpers->get_post_meta( $id, 'valid_from' );
+					$valid_to       = $this->helpers->get_post_meta( $id, 'valid_to' );
+					$blood          = $this->helpers->get_post_meta( $id, 'blood_type' );
+					$marital_status = $this->helpers->get_post_meta( $id, 'marital_status' );
+					$phone          = $this->helpers->get_post_meta( $id, 'phone' );
+
 					$output[] = array(
-						'name'    => get_the_title(),
-						'id_card' => $this->helpers->get_post_meta( $id, 'id_card_number' ),
-						'blood'   => $this->helpers->get_post_meta( $id, 'blood_type' ),
+						'name'           => get_the_title(),
+						'id_card'        => $this->helpers->get_post_meta( $id, 'id_card_number' ),
+						'position'       => $this->helpers->translate_position( $position, '-' ),
+						'divisions'      => implode( ', ', $divisions_tr ),
+						'validity'       => $valid_from && $valid_to ? $this->helpers->timestamp_to_date( $valid_from ) . ' - ' . $this->helpers->timestamp_to_date( $valid_to ) : '-',
+						'blood'          => $this->helpers->translate_blood_type( $blood, '-' ),
+						'marital_status' => $this->helpers->translate_status( $marital_status, '-' ),
+						'skills'         => $this->helpers->get_volunteer_skills( $id, false, '-' ),
+						'contact'        => "$phone",
 					);
 				}
 			} else {
