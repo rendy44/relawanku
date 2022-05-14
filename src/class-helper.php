@@ -94,14 +94,15 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		/**
 		 * Translate division key into readable name.
 		 *
-		 * @param string $key key of the division.
+		 * @param string      $key key of the division.
+		 * @param bool|string $default default value.
 		 *
 		 * @return string|bool
 		 */
-		public function translate_division( $key ) {
+		public function translate_division( $key, $default = false ) {
 			$divisions = $this->get_divisions();
 
-			return ! empty( $divisions[ $key ] ) ? $divisions[ $key ] : false;
+			return ! empty( $divisions[ $key ] ) ? $divisions[ $key ] : $default;
 		}
 
 		/**
@@ -145,14 +146,15 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		/**
 		 * Translate status into readable name.
 		 *
-		 * @param string $key key of the status.
+		 * @param string      $key key of the status.
+		 * @param bool|string $default default value.
 		 *
 		 * @return string|bool
 		 */
-		public function translate_status( $key ) {
+		public function translate_status( $key, $default = false ) {
 			$status = $this->get_status();
 
-			return ! empty( $status[ $key ] ) ? $status[ $key ] : false;
+			return ! empty( $status[ $key ] ) ? $status[ $key ] : $default;
 		}
 
 		/**
@@ -172,14 +174,15 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		/**
 		 * Translate blood type into readable name.
 		 *
-		 * @param string $key key of the status.
+		 * @param string      $key key of the status.
+		 * @param bool|string $default default value.
 		 *
 		 * @return string|bool
 		 */
-		public function translate_blood_type( $key ) {
+		public function translate_blood_type( $key, $default = false ) {
 			$blood_types = $this->get_blood_types();
 
-			return ! empty( $blood_types[ $key ] ) ? $blood_types[ $key ] : false;
+			return ! empty( $blood_types[ $key ] ) ? $blood_types[ $key ] : $default;
 		}
 
 		/**
@@ -202,25 +205,27 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 		/**
 		 * Translate position into readable name.
 		 *
-		 * @param string $key key of the position.
+		 * @param string      $key key of the position.
+		 * @param bool|string $default default value.
 		 *
 		 * @return string|bool
 		 */
-		public function translate_position( $key ) {
+		public function translate_position( $key, $default = false ) {
 			$positions = $this->get_positions();
 
-			return ! empty( $positions[ $key ] ) ? $positions[ $key ] : false;
+			return ! empty( $positions[ $key ] ) ? $positions[ $key ] : $default;
 		}
 
 		/**
 		 * Method to get volunteer's skills.
 		 *
-		 * @param int  $id id of the volunteer.
-		 * @param bool $return_as_array whether return as array or string.
+		 * @param int         $id id of the volunteer.
+		 * @param bool        $return_as_array whether return as array or string.
+		 * @param bool|string $default default value.
 		 *
 		 * @return array|string
 		 */
-		public function get_volunteer_skills( $id, $return_as_array = true ) {
+		public function get_volunteer_skills( $id, $return_as_array = true, $default = false ) {
 			$skills    = get_the_terms( $id, 'skill' );
 			$skills_tr = array_map(
 				function ( $skill ) {
@@ -229,7 +234,7 @@ if ( ! class_exists( 'Relawanku\Helper' ) ) {
 				$skills
 			);
 			if ( ! $return_as_array ) {
-				return implode( ', ', $skills_tr );
+				return $skills_tr ? implode( ', ', $skills_tr ) : $default;
 			}
 
 			return $skills_tr;

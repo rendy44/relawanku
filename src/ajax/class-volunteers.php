@@ -65,7 +65,7 @@ if ( ! class_exists( 'Relawanku\Ajax\Volunteers' ) ) {
 					$divisions      = $this->helpers->get_post_meta( $id, 'division', false );
 					$divisions_tr   = array_map(
 						function ( $div ) {
-							return $this->helpers->translate_division( $div );
+							return $this->helpers->translate_division( $div, '' );
 						},
 						$divisions
 					);
@@ -73,17 +73,18 @@ if ( ! class_exists( 'Relawanku\Ajax\Volunteers' ) ) {
 					$valid_to       = $this->helpers->get_post_meta( $id, 'valid_to' );
 					$blood          = $this->helpers->get_post_meta( $id, 'blood_type' );
 					$marital_status = $this->helpers->get_post_meta( $id, 'marital_status' );
+					$phone          = $this->helpers->get_post_meta( $id, 'phone' );
 
 					$output[] = array(
 						'name'           => get_the_title(),
 						'id_card'        => $this->helpers->get_post_meta( $id, 'id_card_number' ),
-						'position'       => $this->helpers->translate_position( $position ),
+						'position'       => $this->helpers->translate_position( $position, '=' ),
 						'divisions'      => implode( ', ', $divisions_tr ),
 						'validity'       => $valid_from && $valid_to ? $this->helpers->timestamp_to_date( $valid_from ) . ' - ' . $this->helpers->timestamp_to_date( $valid_to ) : '-',
-						'blood'          => $this->helpers->translate_blood_type( $blood ),
-						'marital_status' => $this->helpers->translate_status( $marital_status ),
-						'skills'         => $this->helpers->get_volunteer_skills( $id, false ),
-						'contact'        => $this->helpers->get_post_meta( $id, 'phone' ),
+						'blood'          => $this->helpers->translate_blood_type( $blood, '-' ),
+						'marital_status' => $this->helpers->translate_status( $marital_status, '-' ),
+						'skills'         => $this->helpers->get_volunteer_skills( $id, false, '-' ),
+						'contact'        => "$phone",
 					);
 				}
 			} else {
