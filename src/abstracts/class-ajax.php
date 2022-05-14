@@ -9,9 +9,9 @@
 
 namespace Relawanku\Abstracts;
 
-use Relawanku\Helper;
 use Relawanku\Traits\Result;
 use Relawanku\Traits\Singleton;
+use Relawanku\Traits\Utilities;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -27,6 +27,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\Ajax' ) ) {
 	abstract class Ajax {
 		use Singleton;
 		use Result;
+		use Utilities;
 
 		/**
 		 * Variable to control whether the endpoint is public.
@@ -34,13 +35,6 @@ if ( ! class_exists( 'Relawanku\Abstracts\Ajax' ) ) {
 		 * @var bool
 		 */
 		protected $no_privilege = false;
-
-		/**
-		 * Helper class instance.
-		 *
-		 * @var Helper
-		 */
-		protected $helper;
 
 		/**
 		 * Ajax endpoint variable.
@@ -55,8 +49,12 @@ if ( ! class_exists( 'Relawanku\Abstracts\Ajax' ) ) {
 		 * @param string $endpoint new ajax endpoint.
 		 */
 		protected function __construct( $endpoint ) {
+
+			// Define endpoint.
 			$this->endpoint = $endpoint;
-			$this->helper   = Helper::init();
+
+			// Instance helper.
+			$this->instance_helpers();
 
 			// Register new ajax endpoint.
 			add_action(

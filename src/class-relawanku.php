@@ -20,7 +20,8 @@ use Relawanku\Taxonomies\Cluster;
 use Relawanku\Taxonomies\Skill;
 use Relawanku\Traits\Singleton;
 use Relawanku\Types\Mission;
-use Relawanku\Types\Volunteer;
+use Relawanku\Types\Volunteer as T_Volunteer;
+use Relawanku\Tables\Volunteer as Tbl_Volunteer;
 use RWMB_Loader;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,6 +54,9 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 
 			// Register custom post types.
 			$this->reg_post_types();
+
+			// Register custom admin columns.
+			$this->reg_post_tables();
 
 			// Register custom metaboxes.
 			$this->reg_metaboxes();
@@ -105,8 +109,17 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 		 * Method to instance post types.
 		 */
 		private function reg_post_types() {
-			Volunteer::init();
+			T_Volunteer::init();
 			Mission::init();
+		}
+
+		/**
+		 * Method to register custom admin columns.
+		 *
+		 * @return void
+		 */
+		private function reg_post_tables() {
+			Tbl_Volunteer::init();
 		}
 
 		/**
@@ -151,6 +164,7 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 				'views_edit-volunteer',
 				function ( $screens ) {
 					$screens['export'] = '<a href="#" id="exp-volunteer">' . __( 'Export', 'relawanku' ) . '</a>';
+
 					return $screens;
 				}
 			);

@@ -10,6 +10,7 @@
 namespace Relawanku\Abstracts;
 
 use Relawanku\Traits\Singleton;
+use Relawanku\Traits\Utilities;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -24,6 +25,7 @@ if ( ! class_exists( 'Relawanku\Abstracts\metabox' ) ) {
 	 */
 	abstract class Metabox {
 		use Singleton;
+		use Utilities;
 
 		/**
 		 * Metabox field args.
@@ -63,6 +65,9 @@ if ( ! class_exists( 'Relawanku\Abstracts\metabox' ) ) {
 		protected function __construct( $id, $title = '', array $post_types = array( 'post' ) ) {
 			// Save the config.
 			$this->instance( $id, $title, $post_types );
+
+			// Instance helpers.
+			$this->instance_helpers();
 
 			// Trigger the filter.
 			add_filter(

@@ -10,7 +10,6 @@
 namespace Relawanku\Metaboxes\Volunteer;
 
 use Relawanku\Abstracts\Metabox;
-use Relawanku\Helper;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,17 +25,9 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Community' ) ) {
 	final class Community extends Metabox {
 
 		/**
-		 * Helper instance.
-		 *
-		 * @var Helper|null
-		 */
-		private $helper;
-
-		/**
 		 * Community constructor.
 		 */
 		protected function __construct() {
-			$this->helper = Helper::init();
 
 			parent::__construct( 'community', __( 'Community Information', 'relawanku' ), array( 'volunteer' ) );
 
@@ -54,7 +45,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Community' ) ) {
 						'type'        => 'select_advanced',
 						'name'        => esc_html__( 'Division', 'relawanku' ),
 						'id'          => 'division',
-						'options'     => $this->helper->get_divisions(),
+						'options'     => $this->helpers->get_divisions(),
 						'placeholder' => esc_html__( 'Select division', 'relawanku' ),
 						'multiple'    => true,
 					)
@@ -64,7 +55,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\Community' ) ) {
 						'type'        => 'select',
 						'name'        => esc_html__( 'Position', 'relawanku' ),
 						'id'          => 'position',
-						'options'     => $this->helper->get_positions(),
+						'options'     => $this->helpers->get_positions(),
 						'placeholder' => esc_html_x( 'Select position', 'relawanku' ),
 					)
 				)

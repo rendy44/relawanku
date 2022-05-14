@@ -10,7 +10,6 @@
 namespace Relawanku\Ajax;
 
 use Relawanku\Abstracts\Ajax;
-use Relawanku\Helper;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -48,7 +47,7 @@ if ( ! class_exists( 'Relawanku\Ajax\QRCode' ) ) {
 				$qrcode_url = $qrcode->get_data();
 
 				// Save qrcode to custom meta.
-				Helper::init()->add_post_meta( $volunteer_id, 'qrcode_url', $qrcode_url );
+				$this->helpers->add_post_meta( $volunteer_id, 'qrcode_url', $qrcode_url );
 
 				// Update result.
 				$this->set_status();

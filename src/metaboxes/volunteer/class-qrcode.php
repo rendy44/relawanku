@@ -45,7 +45,7 @@ if ( ! class_exists( 'Relawanku\Metaboxes\Volunteer\QRCode' ) ) {
 					'callback' => function () {
 						global $post_id;
 						if ( $post_id ) {
-							$qrcode = Helper::init()->get_post_meta( $post_id, 'qrcode_url' );
+							$qrcode = $this->helpers->get_post_meta( $post_id, 'qrcode_url' );
 
 							// Validate qrcode.
 							if ( $qrcode ) {
