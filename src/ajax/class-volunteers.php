@@ -78,7 +78,7 @@ if ( ! class_exists( 'Relawanku\Ajax\Volunteers' ) ) {
 					$output[] = array(
 						'name'           => get_the_title(),
 						'id_card'        => $this->helpers->get_post_meta( $id, 'id_card_number' ),
-						'position'       => $this->helpers->translate_position( $position, '=' ),
+						'position'       => $this->helpers->translate_position( $position, '-' ),
 						'divisions'      => implode( ', ', $divisions_tr ),
 						'validity'       => $valid_from && $valid_to ? $this->helpers->timestamp_to_date( $valid_from ) . ' - ' . $this->helpers->timestamp_to_date( $valid_to ) : '-',
 						'blood'          => $this->helpers->translate_blood_type( $blood, '-' ),
