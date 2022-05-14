@@ -22,6 +22,7 @@ use Relawanku\Traits\Singleton;
 use Relawanku\Types\Mission;
 use Relawanku\Types\Volunteer as T_Volunteer;
 use Relawanku\Tables\Volunteer as Tbl_Volunteer;
+use Relawanku\Tables\Mission as Tbl_Mission;
 use RWMB_Loader;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -120,6 +121,7 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 		 */
 		private function reg_post_tables() {
 			Tbl_Volunteer::init();
+			Tbl_Mission::init();
 		}
 
 		/**
