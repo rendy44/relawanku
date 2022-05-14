@@ -44,9 +44,10 @@ if ( ! class_exists( 'Relawanku\Ajax\Volunteers' ) ) {
 			// Query all the volunteers.
 			$query_volunteers = new WP_Query(
 				array(
-					'post_type' => 'volunteer',
-					'paged'     => $page,
-					'status'    => 'published',
+					'post_type'     => 'volunteer',
+					'paged'         => $page,
+					'status'        => 'published',
+					'post_per_page' => - 1,
 				)
 			);
 
