@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
+import {MultiSelect} from "react-multi-select-component";
 
 const {useState, useEffect} = wp.element
 
@@ -90,4 +91,27 @@ Button.propTypes = {
     callback: PropTypes.func.isRequired
 }
 
-export {Input, Select, DateP, Button};
+const SelectMultiple = props => {
+    const [value, setValue] = useState([])
+    const usedLabel = props.label ?? 'Name'
+    const options = [
+        {label: "Grapes 🍇", value: "grapes"},
+        {label: "Mango 🥭", value: "mango"},
+        {label: "Strawberry 🍓", value: "strawberry", disabled: true},
+    ]
+    return <>
+        <label>
+            {usedLabel}
+            <MultiSelect
+                options={options}
+                value={value}
+                onChange={setValue}
+                labelledBy="Select"
+            />
+        </label>
+    </>
+}
+SelectMultiple.propTypes = {
+    label: PropTypes.string
+}
+export {Input, Select, DateP, Button, SelectMultiple};

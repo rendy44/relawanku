@@ -1,4 +1,5 @@
-import {Button, DateP, Input, Select} from "./forms"
+import PropTypes from 'prop-types';
+import {Button, DateP, Input, Select, SelectMultiple} from "./forms"
 
 const {useState, useEffect, componentDidMount} = wp.element
 
@@ -14,6 +15,9 @@ const Step = (props) => {
     return (<div className={'steps'}>
         <ul>{stepLinks}</ul>
     </div>)
+}
+Step.propTypes = {
+    current: PropTypes.number.isRequired
 }
 
 const Title = props => {
@@ -36,6 +40,9 @@ const Title = props => {
     return <div className={'registration-title'}>
         <h1>{title}</h1>
     </div>
+}
+Title.propTypes = {
+    current: PropTypes.number.isRequired
 }
 
 const App = () => {
@@ -81,7 +88,27 @@ const App = () => {
             </>
             break;
         case 2:
-            usedForm = <p>Hayyoo</p>
+            usedForm = <>
+                <div className={'frow gutters mb-25 row-form'}>
+                    <div className={'col-sm-1-1'}>
+                        <SelectMultiple label={'Skills'}/>
+                    </div>
+                </div>
+                <div className={'frow gutters row-end row-action'}>
+                    <div className={'col-sm-1-3'}>
+                        <Button label={'Back'} type={'secondary'} callback={e => {
+                            setCurrentStep(1)
+                        }
+                        }/>
+                    </div>
+                    <div className={'col-sm-1-3'}>
+                        <Button label={'Continue'} type={'primary'} callback={e => {
+                            setCurrentStep(3)
+                        }
+                        }/>
+                    </div>
+                </div>
+            </>
             break;
     }
     return <>
