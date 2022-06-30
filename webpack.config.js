@@ -7,6 +7,7 @@ module.exports = {
 		app: './assets/scripts/app.js',
 		metabox: './assets/scripts/metabox.js',
 		admin: './assets/scripts/admin.js',
+		reactRegister: './assets/scripts/react/register/main.js',
 	},
 	output: {
 		filename: '[name].min.js',

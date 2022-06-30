@@ -34,6 +34,8 @@
   },
   "dependencies": {
     "export-to-csv": "^0.2.1",
-    "frow": "^4.0.0"
+    "frow": "^4.0.0",
+    "prop-types": "^15.8.1",
+    "react-datepicker": "^4.8.0"
   }
 }

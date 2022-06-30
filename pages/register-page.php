@@ -1,24 +1,26 @@
 <?php
 /**
- * Template Name: Register Page
- * Template Post Type: page
+ * Template Name: Volunteer Registration Page
  *
  * @author Rendy
  * @package Relawanku
  * @version 0.1.0
  */
 
-use Relawanku\Helper;
+use Relawanku\Template;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$helper = Helper::init();
+do_action( 'rlw_register_page' );
+
 get_header();
 
 while ( have_posts() ) {
 	the_post();
+
+	Template::init()->render( 'pages.register' );
 }
 
 get_footer();

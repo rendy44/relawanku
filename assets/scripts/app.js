@@ -1,9 +1,9 @@
 (function ($) {
 
-	class App {
-		constructor() {
-		}
-	}
+    class App {
+        constructor() {
+        }
+    }
 
-	new App();
-})( jQuery )
+    new App();
+})(jQuery)

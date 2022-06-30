@@ -54,6 +54,7 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 			$this->map_assets();
 			$this->front_end_assets();
 			$this->admin_assets();
+			$this->register_page_assets();
 		}
 
 		/**
@@ -106,7 +107,16 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 
 					// Admin js.
 					foreach ( $this->admin_js as $js_key => $js_url ) {
-						wp_enqueue_script( $js_key, RELAWANKU__URL . '/assets/js/' . $js_url, array( 'jquery', 'wp-util' ), RELAWANKU__VERSION, true );
+						wp_enqueue_script(
+							$js_key,
+							RELAWANKU__URL . '/assets/js/' . $js_url,
+							array(
+								'jquery',
+								'wp-util',
+							),
+							RELAWANKU__VERSION,
+							true
+						);
 					}
 
 					wp_localize_script(
@@ -116,6 +126,35 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 							'ajax_url' => admin_url( 'admin-ajax.php' ),
 							'prefix'   => RELAWANKU__PREFIX,
 						)
+					);
+				}
+			);
+		}
+
+		/**
+		 * Enqueue assets for register page.
+		 *
+		 * @return void
+		 */
+		private function register_page_assets() {
+			add_action(
+				'rlw_register_page',
+				function () {
+					add_action(
+						'wp_enqueue_scripts',
+						function () {
+							wp_enqueue_script(
+								'register_page',
+								RELAWANKU__URL . '/assets/js/reactRegister.min.js',
+								array(
+									'jquery',
+									'wp-util',
+									'wp-element',
+								),
+								RELAWANKU__VERSION,
+								true
+							);
+						}
 					);
 				}
 			);

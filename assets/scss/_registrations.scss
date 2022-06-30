@@ -1,0 +1,114 @@
+.registration-section {
+  .steps {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+
+      li {
+        display: inline;
+        position: relative;
+        $inactiveBulletColor: darken($white, 25%);
+        $bulletSize: 40px;
+
+        span {
+          display: none;
+        }
+
+        &:before {
+          content: counter(step);
+          counter-increment: step;
+          width: $bulletSize;
+          height: $bulletSize;
+          border: 2px solid $inactiveBulletColor;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 10px;
+          border-radius: 50%;
+          line-height: 1;
+          background: $white;
+          color: $inactiveBulletColor;
+          text-align: center;
+          font-weight: bold;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 8px;
+          background: $inactiveBulletColor;
+          top: 6px;
+          left: -50%;
+          z-index: -1;
+        }
+
+        &:first-child {
+          &:before {
+            margin-left: 0;
+          }
+
+          &:after {
+            content: none;
+          }
+        }
+
+        &:last-child:before {
+          margin-right: 0;
+        }
+
+        &.passed {
+          &:before {
+            color: $white;
+            border-color: $success;
+            background: $success;
+          }
+
+          &:after {
+            background: $success;
+          }
+        }
+      }
+    }
+  }
+
+  .inner-content {
+    background: $white;
+    padding: 1rem;
+    border: 1px solid $lightestBlack;
+    @include boxShadow();
+
+    .registration-title {
+      margin-bottom: 1.5rem;
+      text-align: center;
+
+      h1 {
+        font-size: 1.25rem;
+      }
+    }
+
+    .row-action {
+      button.button {
+        width: 100%;
+        line-height: 1;
+        padding: .75rem 1rem;
+        font-size: 90%;
+        font-weight: 600;
+        border: 1px solid $lightestBlack;
+
+        &.button-primary {
+          color: $white;
+          background: $main;
+          border-color: darken($main, 10%);
+        }
+      }
+    }
+  }
+}
