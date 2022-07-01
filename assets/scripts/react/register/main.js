@@ -47,10 +47,17 @@ Title.propTypes = {
 }
 
 const App = () => {
-    const [currentStep, setCurrentStep] = useState(1);
+    const [currentStep, setCurrentStep] = useState(1)
     const [isLoaded, setIsLoaded] = useState(false)
-    const [languagePacks, setLanguagePacks] = useState({});
+    const [languagePacks, setLanguagePacks] = useState({})
+    const [skills, setSkills] = useState([])
     let usedForm;
+    const isEmpty = object => {
+        for (const property in object) {
+            return false;
+        }
+        return true;
+    }
     switch (currentStep) {
         case 1:
             usedForm = <>
@@ -88,6 +95,7 @@ const App = () => {
                     <div className={'col-sm-1-3'}>
                         <Button label={languagePacks.continue} type={'primary'} callback={e => {
                             setCurrentStep(2)
+                            setIsLoaded(false)
                         }
                         }/>
                     </div>
@@ -98,19 +106,21 @@ const App = () => {
             usedForm = <>
                 <div className={'frow gutters mb-25 row-form'}>
                     <div className={'col-sm-1-1'}>
-                        <SelectMultiple label={'Skills'}/>
+                        <SelectMultiple label={'Skills'} options={skills}/>
                     </div>
                 </div>
                 <div className={'frow gutters row-end row-action'}>
                     <div className={'col-sm-1-3'}>
                         <Button label={'Back'} type={'secondary'} callback={e => {
                             setCurrentStep(1)
+                            setIsLoaded(false)
                         }
                         }/>
                     </div>
                     <div className={'col-sm-1-3'}>
                         <Button label={'Continue'} type={'primary'} callback={e => {
                             setCurrentStep(3)
+                            setIsLoaded(false)
                         }
                         }/>
                     </div>
@@ -119,14 +129,31 @@ const App = () => {
             break;
     }
     useEffect(() => {
-        if (!isLoaded) {
-            wp.ajax.send(rlw.prefix + 'languages', {})
-                .done((result) => {
+        switch (currentStep) {
+            case 1:
+                if (isEmpty(languagePacks)) {
+                    wp.ajax.send(rlw.prefix + 'languages', {})
+                        .done((result) => {
+                            setLanguagePacks(result)
+                            setIsLoaded(true)
+                        })
+                } else {
                     setIsLoaded(true)
-                    setLanguagePacks(result)
-                })
+                }
+                break;
+            case 2:
+                if (skills.length <= 0) {
+                    wp.ajax.send(rlw.prefix + 'skills', {})
+                        .done(result => {
+                            setSkills(result)
+                            setIsLoaded(true)
+                        })
+                } else {
+                    setIsLoaded(true)
+                }
+                break;
         }
-    }, [isLoaded])
+    }, [isLoaded, currentStep])
     const usedContent = isLoaded ? usedForm : <Loading/>
     return <>
         <Step current={currentStep}/>

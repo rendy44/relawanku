@@ -95,16 +95,17 @@ Button.propTypes = {
 const SelectMultiple = props => {
     const [value, setValue] = useState([])
     const usedLabel = props.label ?? 'Name'
-    const options = [
-        {label: "Grapes 🍇", value: "grapes"},
-        {label: "Mango 🥭", value: "mango"},
-        {label: "Strawberry 🍓", value: "strawberry", disabled: true},
-    ]
+    const usedOptions = props.options ?? []
+    // const options = [
+    //     {label: "Grapes 🍇", value: "grapes"},
+    //     {label: "Mango 🥭", value: "mango"},
+    //     {label: "Strawberry 🍓", value: "strawberry", disabled: true},
+    // ]
     return <>
         <label>
             {usedLabel}
             <MultiSelect
-                options={options}
+                options={usedOptions}
                 value={value}
                 onChange={setValue}
                 labelledBy="Select"
@@ -113,7 +114,8 @@ const SelectMultiple = props => {
     </>
 }
 SelectMultiple.propTypes = {
-    label: PropTypes.string
+    label: PropTypes.string,
+    options: PropTypes.array.isRequired
 }
 
 const Loading = props => {
