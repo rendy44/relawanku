@@ -154,6 +154,7 @@ if ( ! class_exists( 'Relawanku\Assets' ) ) {
 								RELAWANKU__VERSION,
 								true
 							);
+							wp_localize_script( 'register_page', 'rlw', array( 'prefix' => RELAWANKU__PREFIX ) );
 						}
 					);
 				}

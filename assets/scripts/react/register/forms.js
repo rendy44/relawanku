@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
 import {MultiSelect} from "react-multi-select-component";
+import ReactLoading from 'react-loading';
 
 const {useState, useEffect} = wp.element
 
@@ -13,7 +14,7 @@ const Input = props => {
         setValue(e.target.value)
     }
     useEffect(() => {
-        console.log(value)
+        // console.log(value)
     }, [value])
 
     const usedPlaceholder = props.placeholder ?? ''
@@ -46,7 +47,7 @@ const Select = props => {
         usedOptions.push(<option>{opt}</option>)
     })
     useEffect(() => {
-        console.log(value)
+        // console.log(value)
     }, [value])
     return <>
         <label>
@@ -114,4 +115,15 @@ const SelectMultiple = props => {
 SelectMultiple.propTypes = {
     label: PropTypes.string
 }
-export {Input, Select, DateP, Button, SelectMultiple};
+
+const Loading = props => {
+    return <div className={'frow gutters'}>
+        <div className={'col-sm-1-1'}>
+            <div className={'text-center'}>
+                <ReactLoading type={'cylon'} color={'#737'} height={64} width={64}/>
+            </div>
+        </div>
+    </div>
+}
+
+export {Input, Select, DateP, Button, SelectMultiple, Loading};

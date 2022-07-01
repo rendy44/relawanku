@@ -37,6 +37,7 @@
     "frow": "^4.0.0",
     "prop-types": "^15.8.1",
     "react-datepicker": "^4.8.0",
+    "react-loading": "^2.0.3",
     "react-multi-select-component": "^4.2.9"
   }
 }

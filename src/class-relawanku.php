@@ -9,6 +9,7 @@
 
 namespace Relawanku;
 
+use Relawanku\Ajax\Languages;
 use Relawanku\Ajax\Volunteers;
 use Relawanku\Metaboxes\Mission\Basic;
 use Relawanku\Metaboxes\Volunteer\Community;
@@ -154,6 +155,7 @@ if ( ! class_exists( 'Relawanku\Relawanku' ) ) {
 		private function reg_ajax() {
 			Ajax\QRCode::init();
 			Volunteers::init();
+			Languages::init();
 		}
 
 		/**
